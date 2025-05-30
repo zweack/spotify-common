@@ -153,6 +153,7 @@ export declare const getApi: (spotifyAuthServer: string, token: string, refreshT
                 trackUri?: string | undefined;
                 offset?: number | undefined;
                 albumUri?: string | undefined;
+                playlistUri?: string | undefined;
                 deviceId?: string | undefined;
             }) => Promise<void>;
         };
@@ -420,6 +421,7 @@ declare const tempAPI: {
                 trackUri?: string | undefined;
                 offset?: number | undefined;
                 albumUri?: string | undefined;
+                playlistUri?: string | undefined;
                 deviceId?: string | undefined;
             }) => Promise<void>;
         };

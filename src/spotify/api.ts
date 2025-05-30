@@ -135,15 +135,35 @@ export const getApi = (spotifyAuthServer: string, token: string, refreshToken: s
                 }
             },
             play: {
-                put: async (params: { trackUri?: string, offset?: number, albumUri?: string, deviceId?: string }) => {
-                    const { trackUri, albumUri, deviceId, offset } = params;
-                    const body = JSON.stringify({
-                        ...(trackUri ? { "uris": [trackUri] } : {}),
-                        ...(albumUri ? { "context_uri": albumUri } : {}),
-                        ...(offset !== void 0 ? { "offset": { "position": offset } } : {})
-                    });
+                put: async (params: { trackUri?: string, offset?: number, albumUri?: string, playlistUri?: string, deviceId?: string }) => {
+                    const { trackUri, albumUri, playlistUri, deviceId, offset } = params;
+                    let body: any = {};
+
+                    if (playlistUri) {
+                        // Play from playlist context
+                        body.context_uri = playlistUri;
+                        if (trackUri) {
+                            // Use offset by uri if trackUri is provided
+                            body.offset = { uri: trackUri };
+                        } else if (offset !== void 0) {
+                            // Or offset by position
+                            body.offset = { position: offset };
+                        }
+                    } else if (albumUri) {
+                        // Play from album context
+                        body.context_uri = albumUri;
+                        if (offset !== void 0) {
+                            body.offset = { position: offset };
+                        }
+                    } else if (trackUri) {
+                        // Play single track
+                        body.uris = [trackUri];
+                    }
+
                     return makeRequest<void>(queryParamsHelper(`me/player/play`, { 'device_id': deviceId }), {
-                        body, ...PUT, ...headers
+                        body: JSON.stringify(body),
+                        ...PUT,
+                        ...headers
                     });
                 }
             },
