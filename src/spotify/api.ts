@@ -95,7 +95,7 @@ export const getApi = (spotifyAuthServer: string, token: string, refreshToken: s
                     return tracks;
                 },
                 // Treated as liking the song
-                put: async ( trackUri?: string ) => {
+                put: async (trackUri?: string) => {
                     const body = JSON.stringify({
                         ...(trackUri ? { "uris": [trackUri] } : {})
                     });
@@ -104,7 +104,7 @@ export const getApi = (spotifyAuthServer: string, token: string, refreshToken: s
                     });
                 },
                 // Treated as unliking the song
-                delete: async ( trackUri?: string ) => {
+                delete: async (trackUri?: string) => {
                     const body = JSON.stringify({
                         ...(trackUri ? { "uris": [trackUri] } : {})
                     });
@@ -113,7 +113,7 @@ export const getApi = (spotifyAuthServer: string, token: string, refreshToken: s
                     });
                 },
                 contains: {
-                    get: async ( trackUri?: string ) => {
+                    get: async (trackUri?: string) => {
                         return await makeRequest<boolean[]>(queryParamsHelper(`me/tracks/contains`, { 'ids': trackUri }), {
                             ...GET, ...headers
                         });
@@ -276,43 +276,43 @@ export const getApi = (spotifyAuthServer: string, token: string, refreshToken: s
         },
         albums: {
             get: async (options?: {
-              fields?: string;
-              limit?: number;
-              offset?: number;
+                fields?: string;
+                limit?: number;
+                offset?: number;
             }) => {
-              const opt = { limit: 50, offset: 0, ...options };
-              return makeRequest<{ items: Album[]; total: number }>(
-                queryParamsHelper("me/albums", opt),
-                {
-                  ...GET,
-                  ...headers,
-                }
-              );
+                const opt = { limit: 50, offset: 0, ...options };
+                return makeRequest<{ items: Album[]; total: number }>(
+                    queryParamsHelper("me/albums", opt),
+                    {
+                        ...GET,
+                        ...headers,
+                    }
+                );
             },
             async getAll() {
-              let albums: Album[] = [];
-              const limit = 50;
-              let getOperations = 1;
-              let i = 0;
-              let offset = 0;
-              while (i < getOperations) {
-                const res = await this.get({ limit, offset });
-                i++;
-                offset += limit;
-                getOperations = Math.ceil(res.total / limit);
-                albums = albums.concat(res.items);
-              }
-      
-              return albums;
+                let albums: Album[] = [];
+                const limit = 50;
+                let getOperations = 1;
+                let i = 0;
+                let offset = 0;
+                while (i < getOperations) {
+                    const res = await this.get({ limit, offset });
+                    i++;
+                    offset += limit;
+                    getOperations = Math.ceil(res.total / limit);
+                    albums = albums.concat(res.items);
+                }
+
+                return albums;
             },
             tracks: {
-              async getAll({ album }: Album): Promise<Track[]> {
-                return album.tracks.items.map((track) => ({
-                  track: { ...track, album: { id: album.id, name: album.name } },
-                }));
-              },
+                async getAll({ album }: Album): Promise<Track[]> {
+                    return album.tracks.items.map((track) => ({
+                        track: { ...track, album: { id: album.id, name: album.name } },
+                    }));
+                },
             },
-          },
+        },
     }
 };
 
