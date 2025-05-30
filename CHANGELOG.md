@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/zweack/spotify-common/compare/v1.4.1...v1.5.0) (2025-05-30)
+
+
+### Features
+
+* create albums API ([28fcb3d](https://github.com/zweack/spotify-common/commit/28fcb3d45887b3ef330c9218b1c4487716bad93c))
+
 ### [1.4.1](https://github.com/ShyykoSerhiy/spotify-common/compare/v1.4.0...v1.4.1) (2020-10-03)
 
 

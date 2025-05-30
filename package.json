@@ -1,24 +1,24 @@
 {
   "name": "@vscodespotify/spotify-common",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Common code for vscode-spotify and spotify-teams",
   "main": "./lib/spotify/api.js",
   "types": "./lib/spotify/api.d.ts",
   "scripts": {
-    "compile": "./node_modules/.bin/tsc",
+    "compile": "tsc",
     "release": "npm run compile && standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShyykoSerhiy/spotify-common.git"
+    "url": "git+https://github.com/zweack/spotify-common.git"
   },
-  "author": "shyyko.serhiy",
+  "author": "zweack",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ShyykoSerhiy/spotify-common/issues"
+    "url": "https://github.com/zweack/spotify-common/issues"
   },
-  "homepage": "https://github.com/ShyykoSerhiy/spotify-common#readme",
+  "homepage": "https://github.com/zweack/spotify-common#readme",
   "devDependencies": {
     "@types/node-fetch": "^2.1.2",
     "standard-version": "^9.0.0",
