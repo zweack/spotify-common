@@ -308,6 +308,169 @@ declare const currentlyPlayingExample: {
         uri: string;
     };
 };
+declare const searchResultExample: {
+    tracks: {
+        items: {
+            album: {
+                id: string;
+                name: string;
+                artists: {
+                    external_urls: {
+                        spotify: string;
+                    };
+                    href: string;
+                    id: string;
+                    name: string;
+                    type: string;
+                    uri: string;
+                }[];
+            };
+            artists: {
+                external_urls: {
+                    spotify: string;
+                };
+                href: string;
+                id: string;
+                name: string;
+                type: string;
+                uri: string;
+            }[];
+            id: string;
+            name: string;
+            uri: string;
+        }[];
+        limit: number;
+        offset: number;
+        total: number;
+    };
+    albums: {
+        items: {
+            album_type: string;
+            artists: {
+                external_urls: {
+                    spotify: string;
+                };
+                href: string;
+                id: string;
+                name: string;
+                type: string;
+                uri: string;
+            }[];
+            id: string;
+            name: string;
+            uri: string;
+        }[];
+        limit: number;
+        offset: number;
+        total: number;
+    };
+    artists: {
+        items: {
+            external_urls: {
+                spotify: string;
+            };
+            followers: {
+                href: null;
+                total: number;
+            };
+            genres: string[];
+            href: string;
+            id: string;
+            images: {
+                height: number;
+                url: string;
+                width: number;
+            }[];
+            name: string;
+            popularity: number;
+            type: string;
+            uri: string;
+        }[];
+        limit: number;
+        offset: number;
+        total: number;
+    };
+    playlists: {
+        items: {
+            collaborative: boolean;
+            description: string;
+            external_urls: {
+                spotify: string;
+            };
+            href: string;
+            id: string;
+            images: {
+                height: number;
+                url: string;
+                width: number;
+            }[];
+            name: string;
+            owner: {
+                display_name: string;
+                id: string;
+                type: string;
+                uri: string;
+            };
+            public: boolean;
+            snapshot_id: string;
+            tracks: {
+                href: string;
+                total: number;
+            };
+            type: string;
+            uri: string;
+        }[];
+        limit: number;
+        offset: number;
+        total: number;
+    };
+};
+export declare type SearchResult = typeof searchResultExample;
+export declare type SearchResultItem = {
+    tracks?: {
+        items: Track[];
+        limit: number;
+        offset: number;
+        total: number;
+    };
+    albums?: {
+        items: Album[];
+        limit: number;
+        offset: number;
+        total: number;
+    };
+    artists?: {
+        items: Array<{
+            id: string;
+            name: string;
+            type: string;
+            uri: string;
+            external_urls: {
+                spotify: string;
+            };
+            followers?: {
+                href: string | null;
+                total: number;
+            };
+            genres?: string[];
+            images?: Array<{
+                height: number;
+                url: string;
+                width: number;
+            }>;
+            popularity?: number;
+        }>;
+        limit: number;
+        offset: number;
+        total: number;
+    };
+    playlists?: {
+        items: Playlist[];
+        limit: number;
+        offset: number;
+        total: number;
+    };
+};
 export declare type Device = typeof deviceExample;
 export declare type User = typeof userExample;
 export declare type Player = typeof playerExample;
