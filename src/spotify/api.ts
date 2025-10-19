@@ -313,6 +313,26 @@ export const getApi = (spotifyAuthServer: string, token: string, refreshToken: s
                 },
             },
         },
+        search: {
+            get: async (query: string, type: ('album' | 'artist' | 'playlist' | 'track')[], options?: { limit?: number, offset?: number, market?: string }) => {
+                const opt = {
+                    q: query,
+                    type: type.join(','),
+                    limit: 20,
+                    offset: 0,
+                    ...options
+                };
+                return makeRequest<{
+                    albums?: { items: Album[] },
+                    artists?: { items: any[] },
+                    playlists?: { items: Playlist[] },
+                    tracks?: { items: Track[] }
+                }>(queryParamsHelper('search', opt), {
+                    ...GET,
+                    ...headers
+                });
+            }
+        }
     }
 };
 
