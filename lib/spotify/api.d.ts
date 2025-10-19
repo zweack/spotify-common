@@ -279,6 +279,26 @@ export declare const getApi: (spotifyAuthServer: string, token: string, refreshT
             getAll({ album }: Album): Promise<Track[]>;
         };
     };
+    search: {
+        get: (query: string, type: ('album' | 'artist' | 'playlist' | 'track')[], options?: {
+            limit?: number | undefined;
+            offset?: number | undefined;
+            market?: string | undefined;
+        } | undefined) => Promise<{
+            albums?: {
+                items: Album[];
+            } | undefined;
+            artists?: {
+                items: any[];
+            } | undefined;
+            playlists?: {
+                items: Playlist[];
+            } | undefined;
+            tracks?: {
+                items: Track[];
+            } | undefined;
+        }>;
+    };
 };
 declare const tempAPI: {
     me: {
@@ -546,6 +566,26 @@ declare const tempAPI: {
         tracks: {
             getAll({ album }: Album): Promise<Track[]>;
         };
+    };
+    search: {
+        get: (query: string, type: ('album' | 'artist' | 'playlist' | 'track')[], options?: {
+            limit?: number | undefined;
+            offset?: number | undefined;
+            market?: string | undefined;
+        } | undefined) => Promise<{
+            albums?: {
+                items: Album[];
+            } | undefined;
+            artists?: {
+                items: any[];
+            } | undefined;
+            playlists?: {
+                items: Playlist[];
+            } | undefined;
+            tracks?: {
+                items: Track[];
+            } | undefined;
+        }>;
     };
 };
 export declare type Api = typeof tempAPI;
